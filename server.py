@@ -28,6 +28,9 @@ import core.util as util
 import core.database as database
 import core.security as security
 
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
 # packages
 try:
     import cv2
@@ -148,9 +151,9 @@ class C2():
     """
 
     _lock = threading.Lock()
-    _text_color = 'WHITE'
+    _text_color = 'RED'
     _text_style = 'NORMAL'
-    _prompt_color = 'WHITE'
+    _prompt_color = 'RED'
     _prompt_style = 'BRIGHT'
 
     def __init__(self, host='0.0.0.0', port=1337, db=':memory:'):
@@ -484,7 +487,7 @@ class C2():
                         util.display("\ntext color/style changed to ", color='white', style='bright', end=',')
                         util.display(option + '\n', color=self._text_color, style=self._text_style)
                         return
-        util.display("\nusage: set [setting] [option]=[value]\n\n    colors:   white/black/red/yellow/green/cyan/magenta\n    styles:   dim/normal/bright\n", color=self._text_color, style=self._text_style)
+        util.display("\nusage: set [setting] [option]=[value]\n\n    colors:   white/black/red/yellow/green/cyan/magenta\n    styles:   normal/bright\n", color=self._text_color, style=self._text_style)
 
     def task_list(self, id=None):
         """ 
@@ -532,7 +535,7 @@ class C2():
 
         """
         if not self.current_session:
-            util.log( "No client selected")
+            util.log("No client selected")
             return
         client = self.current_session
         result = ''

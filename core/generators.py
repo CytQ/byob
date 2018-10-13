@@ -190,7 +190,7 @@ def freeze(filename, icon=None, hidden=None):
         try:
             line = process.stderr.readline().rstrip()
         except: break
-        if line: util.display(line, color='reset', style='dim')
+        if line: util.display(line, color='reset', style='bright')
         if 'EXE' in line and 'complete' in line: break
     output = os.path.join(path, 'dist', name + str('.exe' if os.name == 'nt' else ''))
     return output

